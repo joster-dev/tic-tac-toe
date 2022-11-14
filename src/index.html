@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>Tic Tac Toe</title>
@@ -12,7 +11,7 @@
   <link
     rel="icon"
     type="image/x-icon"
-    href="assets/logo.png"
+    href="assets/logo.svg"
   >
   <link
     rel="manifest"
@@ -31,8 +30,13 @@
     content="website"
   >
   <meta
+    name="description"
     property="og:description"
     content="The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner"
+  >
+  <meta
+    property="og:url"
+    content="https://joster-dev.github.io/tic-tac-toe/"
   >
   <meta
     property="og:image"
@@ -51,53 +55,28 @@
     content="Ascend and descend icons"
   />
   <meta
-    property="og:url"
-    content="https://joster-dev.github.io/tic-tac-toe/"
-  >
-  <meta
     property="og:site_name"
     content="Jacob Osterhout Projects"
   >
-  <meta
-    name="twitter:card"
-    content="summary"
-  >
-  <meta
-    name="twitter:site"
-    content="@JacobOsterhout"
-  >
-  <meta
-    property="fb:app_id"
-    content="253788859320287"
-  >
-</head>
-
-<body>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-89XG3FWK42"
+  ></script>
   <script>
-    window.fbAsyncInit = function () {
-      FB.init({
-        appId: '253788859320287',
-        cookie: true,
-        xfbml: true,
-        version: 'v8.0'
-      });
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      FB.AppEvents.logPageView();
-
-    };
-
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    gtag('config', 'G-89XG3FWK42');
   </script>
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1550709389333867"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
   <ttt-root></ttt-root>
-  <noscript>
-    Please enable JavaScript to continue using this application.
-  </noscript>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
-
 </html>
