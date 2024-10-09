@@ -1,0 +1,63 @@
+{
+  "configVersion": 1,
+  "timestamp": 1728504988512,
+  "index": "https://joster-dev.github.io/tic-tac-toe/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://joster-dev.github.io/tic-tac-toe/index.html",
+        "https://joster-dev.github.io/tic-tac-toe/main-KFERXZFL.js",
+        "https://joster-dev.github.io/tic-tac-toe/polyfills-FFHMD2TL.js",
+        "https://joster-dev.github.io/tic-tac-toe/styles-GEEARLE2.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://joster-dev.github.io/tic-tac-toe/assets/logo.png",
+        "https://joster-dev.github.io/tic-tac-toe/assets/logo.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://joster-dev.github.io/tic-tac-toe/assets/logo.png": "fa39bc9ab551fc494d317ec3df3c9b48845ac9c7",
+    "https://joster-dev.github.io/tic-tac-toe/assets/logo.svg": "2b569bd6aba4b1d0c491bb0f440f2e214f67e255",
+    "https://joster-dev.github.io/tic-tac-toe/index.html": "c12ed9ea594b15d5df90ce89564133255c489899",
+    "https://joster-dev.github.io/tic-tac-toe/main-KFERXZFL.js": "bd2cd46b91ad9f8c4dfb854f6912c009a284a32e",
+    "https://joster-dev.github.io/tic-tac-toe/polyfills-FFHMD2TL.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
+    "https://joster-dev.github.io/tic-tac-toe/styles-GEEARLE2.css": "b7ed73d2d7a4316fb3a3b424b3abdb5f6c222bb1"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
