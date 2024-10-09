@@ -1,42 +1,46 @@
+:host {
+  // for scroll snap
+  display: block;
+}
+
 form {
   margin: auto;
   padding: 2em 1em;
   max-width: 720px;
+}
 
-  > * {
-    margin-bottom: 1em;
-    &:last-child {
-      margin-bottom: 0;
-    }
+.bot-settings {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  :last-child {
+    grid-column: span 2;
+  }
+}
+
+.settings {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+  border: 1px solid currentColor;
+  border-radius: 0.5em;
+
+  >.card-header {
+    border-bottom: 1px solid currentColor;
   }
 
-  > div {
-    text-align: center;
-    > fc-button {
-      display: inline-block;
-    }
-  }
-
-  fieldset {
+  .card-header,
+  .card-body {
     padding: 1em;
-    border: 1px solid lightgrey;
-    border-radius: 0.5em;
-    box-shadow: 0.2em 0.2em 0.2em 0 lightgrey;
-
-    > .bot-settings {
-      display: grid;
-      grid-gap: 1em;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      :last-child {
-        grid-column: span 2;
-      }
-    }
-
-    > .settings {
-      display: grid;
-      grid-gap: 1em;
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
+}
+
+button {
+  padding: 1em !important;
+  border-radius: 0.5em;
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Form } from 'src/app/models';
+import { Form } from '../../models';
 
 @Injectable({
   providedIn: 'root'

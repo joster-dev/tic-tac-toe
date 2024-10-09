@@ -1,11 +1,15 @@
 import { Cell } from './cell';
+import { GameState } from './game-state';
 
 export class Game {
-  turn: 'x' | 'o' = 'x';
 
-  constructor(public grid: Cell[]) {
-    if (grid.filter(cell => cell.state === 'x').length > grid.filter(cell => cell.state === 'o').length)
-      this.turn = 'o';
+  constructor(
+    public grid: Cell[],
+    public turn: 'x' | 'o',
+  ) { }
+
+  get state(): GameState {
+    return { grid: this.grid, turn: this.turn };
   }
 
   get paths(): Cell[][] {

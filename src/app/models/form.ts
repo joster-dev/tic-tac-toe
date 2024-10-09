@@ -1,8 +1,8 @@
 import { botFirstMove } from './bot-first-move.type';
 
 export class Form {
-  isBotEnabled = false;
-  isBotFirst = false;
+  botPlayer?: 'x' | 'o';
+  goesFirst: 'x' | 'o' = 'x';
   botFirstMove: botFirstMove = 'center';
   xColor: string | null = '702400';
   oColor: string | null = '002470';

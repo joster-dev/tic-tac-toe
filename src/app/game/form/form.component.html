@@ -1,126 +1,103 @@
 <form
   novalidate
   #form="ngForm"
+  class="d-flex gap-2 flex-column"
 >
-  <div>
-    <fc-button
-      [isDisabled]="disabled"
-      (clicked)="restart.emit()"
+  <div class="d-flex justify-content-center">
+    <button
+      [disabled]="disabled"
+      type="button"
+      class="d-flex gap-1 align-items-center"
+      (click)="restart.emit()"
     >
-      Restart&nbsp;&nbsp;
-      <icon
-        type="refresh"
-        size="1em"
-        [fill]="[formService.model.xColor,formService.model.oColor]"
-      ></icon>
-    </fc-button>
+      New Game
+    </button>
   </div>
-  <fieldset>
-    <legend>
-      Settings
-      <icon
-        type="gear"
-        size="1em"
-        [fill]="['247000', '000000']"
-      ></icon>
-    </legend>
-    <div class="settings">
-      <fc-text
+  <div class="card">
+    <div class="card-header">
+      <h2 class="d-flex gap-2 align-items-center justify-content-between">
+        <span>
+          Settings
+        </span>
+        <icon
+          type="gear"
+          size="1em"
+          [fillOpacity]="0"
+        ></icon>
+      </h2>
+    </div>
+    <div class="card-body settings">
+      <jo-text
         [(ngModel)]="formService.model.player1"
         name="player1"
-        [maxLength]="20"
+        [disabled]="formService.model.botPlayer === 'x'"
+        [maxLength]="15"
       >
-        Player 1
-        <icon
-          size="1em"
-          [type]="formService.model.isBotEnabled && formService.model.isBotFirst ? 'ring' : 'times'"
-          [fill]="formService.model.isBotEnabled && formService.model.isBotFirst ? formService.model.oColor : formService.model.xColor"
-        ></icon>
-      </fc-text>
-      <fc-text
+        X Name
+      </jo-text>
+      <jo-text
         [(ngModel)]="formService.model.player2"
         name="player2"
-        [disabled]="formService.model.isBotEnabled"
-        [maxLength]="20"
+        [disabled]="formService.model.botPlayer === 'o'"
+        [maxLength]="15"
       >
-        Player 2
-        <icon
-          *ngIf="!formService.model.isBotEnabled"
-          size="1em"
-          type="ring"
-          [fill]="formService.model.oColor"
-        ></icon>
-      </fc-text>
-      <fc-color
+        O Name
+      </jo-text>
+      <jo-color
         [(ngModel)]="formService.model.xColor"
         name="xColor"
       >
         X Theme
-        <icon
-          type="times"
-          size="1em"
-          [fill]="formService.model.xColor"
-        ></icon>
-      </fc-color>
-      <fc-color
+      </jo-color>
+      <jo-color
         [(ngModel)]="formService.model.oColor"
         name="oColor"
       >
         O Theme
-        <icon
-          type="ring"
-          size="1em"
-          [fill]="formService.model.oColor"
-        ></icon>
-      </fc-color>
-    </div>
-  </fieldset>
-  <fieldset>
-    <legend>
-      Bot Settings
-      <icon
-        type="user"
-        size="1em"
-        [fill]="['247000', '000000']"
-      ></icon>
-    </legend>
-    <div class="bot-settings">
-      <fc-choice
-        [(ngModel)]="formService.model.isBotEnabled"
+      </jo-color>
+      <jo-choice
+        [(ngModel)]="formService.model.goesFirst"
         (ngModelChange)="restart.emit()"
-        name="isBotEnabled"
+        name="goesFirst"
         required
         [disabled]="disabled"
-        [items]="booleans"
+        [items]="botPlayers"
+      >
+        Who goes first
+      </jo-choice>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h2 class="d-flex gap-2 align-items-center justify-content-between">
+        <span>Bot Settings</span>
+        <icon
+          type="user"
+          size="1em"
+          [fillOpacity]="0"
+        ></icon>
+      </h2>
+    </div>
+    <div class="card-body bot-settings">
+      <jo-choice
+        [(ngModel)]="formService.model.botPlayer"
+        (ngModelChange)="restart.emit()"
+        name="botPlayer"
+        [disabled]="disabled"
+        [items]="botPlayers"
       >
         Play
-        <icon
-          *ngIf="formService.model.isBotEnabled"
-          size="1em"
-          [type]="formService.model.isBotFirst ? 'times' : 'ring'"
-          [fill]="formService.model.isBotFirst ? formService.model.xColor : formService.model.oColor"
-        ></icon>
-      </fc-choice>
-      <fc-choice
-        [(ngModel)]="formService.model.isBotFirst"
-        (ngModelChange)="restart.emit()"
-        name="isBotFirst"
-        required
-        [disabled]="!formService.model.isBotEnabled || disabled"
-        [items]="booleans"
-      >
-        Go first
-      </fc-choice>
-      <fc-choice
+      </jo-choice>
+      <jo-choice
         [(ngModel)]="formService.model.botFirstMove"
         (ngModelChange)="restart.emit()"
         name="botFirstMove"
         required
-        [disabled]="!formService.model.isBotEnabled || !formService.model.isBotFirst || disabled"
+        [disabled]="!formService.model.botPlayer || formService.model.botPlayer !== formService.model.goesFirst || disabled"
         [items]="botFirstMoves"
       >
         First move
-      </fc-choice>
+      </jo-choice>
     </div>
-  </fieldset>
+  </div>
 </form>

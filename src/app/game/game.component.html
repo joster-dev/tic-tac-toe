@@ -1,4 +1,12 @@
-<div id="game">
+<header class="d-flex align-items-center justify-content-between">
+  <h1>
+    Tic Tac Toe
+  </h1>
+  <a href="https://github.com/joster-dev/tic-tac-toe">
+    Github
+  </a>
+</header>
+<section id="game">
   <ttt-cell
     *ngFor="let cell of game.grid"
     [cell]="cell"
@@ -9,8 +17,13 @@
     [style.grid-row]="cell.y + 1"
     (claim)="claim(cell)"
   ></ttt-cell>
-</div>
+</section>
 <ttt-form
   [disabled]="!allowClicks"
   (restart)="newGame(true)"
 ></ttt-form>
+<footer class="w-lg d-flex justify-content-end">
+  <a href="https://joster-dev.github.io/">
+    © Jacob Osterhout 2024
+  </a>
+</footer>

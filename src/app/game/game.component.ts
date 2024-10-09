@@ -3,11 +3,24 @@ import { Component, HostListener } from '@angular/core';
 import { Bot, Cell, Game } from '../models';
 import { FormService } from './form/form.service';
 import { LocalStorageService } from './local-storage.service';
+import { FormComponent } from './form/form.component';
+import { CellComponent } from './cell/cell.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ttt-game',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormComponent,
+    CellComponent,
+  ],
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: [
+    '../../../node_modules/@joster-dev/chaos-control/src/lib/atomic.scss',
+    '../../../node_modules/@joster-dev/chaos-control/src/lib/styles.scss',
+    './game.component.scss',
+  ],
 })
 export class GameComponent {
   allowClicks = true;
@@ -18,15 +31,15 @@ export class GameComponent {
     private formService: FormService,
     private localStorageService: LocalStorageService
   ) {
-    if (this.localStorageService.form !== null)
-      this.formService.model = this.localStorageService.form;
+    if (this.localStorageService.state)
+      this.formService.model = this.localStorageService.state.form;
     this.newGame();
   }
 
   @HostListener('window:unload')
   onBeforeUnload(): void {
     this.localStorageService.unload(
-      this.game.grid,
+      this.game.state,
       this.formService.model
     );
   }
@@ -44,21 +57,21 @@ export class GameComponent {
       return;
     }
 
-    if (this.formService.model.isBotEnabled)
+    if (this.formService.model.botPlayer)
       this.botClaim();
   }
 
   newGame(reset = false): void {
     if (reset)
       this.localStorageService.removeGame();
-    let gameGrid = this.localStorageService.game;
-    if (gameGrid === null)
-      gameGrid = this.createGrid();
-    this.game = new Game(gameGrid);
-    if (!this.formService.model.isBotEnabled)
+    this.game = new Game(
+      this.localStorageService.state?.game.grid || this.createGrid(),
+      this.localStorageService.state?.game.turn || this.formService.model.goesFirst,
+    );
+    if (!this.formService.model.botPlayer)
       return;
     this.bot = new Bot(this.formService.model.botFirstMove);
-    if (this.game.moves.length !== 9 || !this.formService.model.isBotFirst)
+    if (this.game.moves.length !== 9 || this.formService.model.goesFirst !== this.formService.model.botPlayer)
       return;
     this.botClaim();
   }
@@ -79,7 +92,7 @@ export class GameComponent {
 
   private async endGame(): Promise<void> {
     this.allowClicks = false;
-    await new Promise(r => window.setTimeout(() => r(), 2500));
+    await new Promise<void>(r => window.setTimeout(() => r(), 2500));
     this.allowClicks = true;
     this.newGame(true);
   }

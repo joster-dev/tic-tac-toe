@@ -1,10 +1,17 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { FormService } from '../form/form.service';
-import { Cell } from 'src/app/models';
+import { Cell } from '../../models';
+import { IconModule } from '@joster-dev/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ttt-cell[cell]',
+  standalone: true,
+  imports: [
+    CommonModule,
+    IconModule,
+  ],
   templateUrl: './cell.component.html',
   styleUrls: ['./cell.component.scss']
 })
@@ -19,11 +26,9 @@ export class CellComponent {
   constructor(public formService: FormService) { }
 
   get isBot(): boolean {
-    if (!this.formService.model.isBotEnabled)
+    if (!this.formService.model.botPlayer)
       return false;
-    return this.formService.model.isBotFirst
-      ? this.cell.state === 'x'
-      : this.cell.state === 'o';
+    return this.cell.state === this.formService.model.botPlayer;
   }
 
   get label(): string | null {

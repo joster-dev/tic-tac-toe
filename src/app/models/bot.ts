@@ -27,7 +27,7 @@ export class Bot {
         : cornerMoves[Math.floor(Math.random() * cornerMoves.length)];
     }
 
-    const scores = await this.scores(game, game.turn);
+    const scores = await this.scores(game, game.turn === 'x' ? 'o' : 'x');
 
     let maxScoreIndex = 0;
     for (let i = 1; i < scores.length; i++)
@@ -43,7 +43,7 @@ export class Bot {
   private async scores(game: Game, turn: 'x' | 'o', depth = 0): Promise<number[]> {
     return Promise.all(game.moves.map(async move => {
       const gridCopy = JSON.parse(JSON.stringify(game.grid));
-      const gameCopy = new Game(gridCopy);
+      const gameCopy = new Game(gridCopy, turn);
 
       if (gameCopy.win(move.x, move.y))
         return gameCopy.turn === turn

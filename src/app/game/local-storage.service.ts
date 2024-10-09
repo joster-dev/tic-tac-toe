@@ -1,45 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Cell, Form } from '../models';
+import { Form, GameState } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
-  readonly version = '001';
-  readonly versionKey = 'version';
-  readonly gameKey = 'gameGrid';
-  readonly formKey = 'form';
+  readonly version = '002';
+  readonly key = 'JosterDevTicTacToe';
+  state?: {
+    version: string,
+    game: GameState,
+    form: Form
+  };
 
   constructor() {
-    const item = window.localStorage.getItem(this.versionKey);
-    if (item === this.version)
+    const item = window.localStorage.getItem(this.key);
+    if (item)
+      this.state = JSON.parse(item);
+    if (item && this.state?.version === this.version)
       return;
-    window.localStorage.removeItem(this.versionKey);
-    window.localStorage.removeItem(this.gameKey);
-    window.localStorage.removeItem(this.formKey);
-  }
-
-  get form(): Form | null {
-    const form = window.localStorage.getItem(this.formKey);
-    if (form === null)
-      return null;
-    return JSON.parse(form);
-  }
-
-  get game(): Cell[] | null {
-    const game = window.localStorage.getItem(this.gameKey);
-    if (game === null)
-      return null;
-    return JSON.parse(game);
+    this.removeGame();
   }
 
   removeGame(): void {
-    window.localStorage.removeItem(this.gameKey);
+    window.localStorage.removeItem(this.key);
+    this.state = undefined;
   }
 
-  unload(game: Cell[], form: Form): void {
-    window.localStorage.setItem(this.versionKey, this.version);
-    window.localStorage.setItem(this.gameKey, JSON.stringify(game));
-    window.localStorage.setItem(this.formKey, JSON.stringify(form));
+  unload(game: GameState, form: Form): void {
+    window.localStorage.setItem(this.key, JSON.stringify({
+      version: this.version,
+      game,
+      form,
+    }))
   }
 }

@@ -1,5 +1,19 @@
+:host {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow-y: auto;
+  scroll-snap-type: y;
+
+  >* {
+    scroll-snap-align: start;
+  }
+}
+
 #game {
-  background: radial-gradient(black, white);
+  background: radial-gradient(currentColor, transparent);
   height: min(100vw, 100vh);
   width: min(calc(100vw - 1em), 100vh);
   min-height: 300px;
@@ -10,6 +24,7 @@
   grid-auto-columns: minmax(0, 1fr);
   grid-gap: 3px;
   position: relative;
+  scroll-snap-stop: always;
 
   &:after {
     content: "";
@@ -18,6 +33,22 @@
     bottom: 0;
     right: 0;
     width: 1px;
-    background-color: white;
   }
+}
+
+header,
+footer {
+  max-width: 850px;
+  padding: 2em 1em;
+  margin: 0 auto;
+}
+
+a {
+  padding: 1em !important;
+  border-radius: 0.5em;
+  text-decoration: none;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
 }
