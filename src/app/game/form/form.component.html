@@ -27,35 +27,35 @@
       </h2>
     </div>
     <div class="card-body settings">
-      <jo-text
+      <cc-text
         [(ngModel)]="formService.model.player1"
         name="player1"
         [disabled]="formService.model.botPlayer === 'x'"
         [maxLength]="15"
       >
         X Name
-      </jo-text>
-      <jo-text
+      </cc-text>
+      <cc-text
         [(ngModel)]="formService.model.player2"
         name="player2"
         [disabled]="formService.model.botPlayer === 'o'"
         [maxLength]="15"
       >
         O Name
-      </jo-text>
-      <jo-color
+      </cc-text>
+      <cc-color
         [(ngModel)]="formService.model.xColor"
         name="xColor"
       >
         X Theme
-      </jo-color>
-      <jo-color
+      </cc-color>
+      <cc-color
         [(ngModel)]="formService.model.oColor"
         name="oColor"
       >
         O Theme
-      </jo-color>
-      <jo-choice
+      </cc-color>
+      <cc-choice
         [(ngModel)]="formService.model.goesFirst"
         (ngModelChange)="restart.emit()"
         name="goesFirst"
@@ -64,7 +64,7 @@
         [items]="botPlayers"
       >
         Who goes first
-      </jo-choice>
+      </cc-choice>
     </div>
   </div>
   <div class="card">
@@ -79,7 +79,7 @@
       </h2>
     </div>
     <div class="card-body bot-settings">
-      <jo-choice
+      <cc-choice
         [(ngModel)]="formService.model.botPlayer"
         (ngModelChange)="restart.emit()"
         name="botPlayer"
@@ -87,8 +87,8 @@
         [items]="botPlayers"
       >
         Play
-      </jo-choice>
-      <jo-choice
+      </cc-choice>
+      <cc-choice
         [(ngModel)]="formService.model.botFirstMove"
         (ngModelChange)="restart.emit()"
         name="botFirstMove"
@@ -97,7 +97,7 @@
         [items]="botFirstMoves"
       >
         First move
-      </jo-choice>
+      </cc-choice>
     </div>
   </div>
 </form>

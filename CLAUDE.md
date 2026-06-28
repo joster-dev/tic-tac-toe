@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `ng serve` — dev server at http://localhost:4200/
 - `ng build` — production build; output goes to `docs/` (not `dist/`), so GitHub Pages can serve it
 - `npm run pages` — build with the GitHub Pages base href
-- `ng test` — run unit tests once via Karma + Jasmine (Chrome)
+- `ng test` — run unit tests once via Vitest (`@angular/build:unit-test` builder, jsdom environment). Add `--watch` for watch mode
 - `ng test --include='**/bot.spec.ts'` — run a single spec file
 - `ng generate component game/foo` — scaffold (SCSS styles, `ttt` selector prefix are defaults)
 
@@ -38,4 +38,5 @@ This app intentionally stays on **zone.js change detection** (`provideZoneChange
 
 - Strict TypeScript is on, including `strictTemplates`, `noPropertyAccessFromIndexSignature`, and `strictInjectionParameters`. Use `inject()` over constructor injection (matches existing code).
 - Keep game/AI logic inside `src/app/models/` free of Angular imports so it stays unit-testable in isolation; every model file has a co-located `.spec.ts`.
-- External UI comes from `@joster-dev/icon` and `@joster-dev/chaos-control`.
+- Tests run on **Vitest** (jsdom env). `describe`/`it`/`expect` are configured as globals by the builder (typed via `vitest/globals` in `tsconfig.spec.json`), so specs don't import them. `src/test-setup.ts` (wired through the `setupFiles` builder option) polyfills `localStorage`, which jsdom doesn't provide but `LocalStorageService` needs.
+- External UI comes from `@joster-dev/icon` and `@joster-dev/chaos-control`. The chaos-control standalone components use `cc-*` selectors (e.g. `cc-text`, `cc-choice`) and must be imported individually — there is no `ChaosControlModule`.

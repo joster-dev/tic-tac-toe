@@ -5,14 +5,16 @@ import { botFirstMoves } from '../../models';
 import { FormService } from './form.service';
 
 import { IconComponent } from '@joster-dev/icon';
-import { ChaosControlModule } from '@joster-dev/chaos-control';
+import { ChoiceComponent, ColorComponent, TextComponent } from '@joster-dev/chaos-control';
 
 @Component({
   selector: 'ttt-form',
   imports: [
     FormsModule,
     IconComponent,
-    ChaosControlModule,
+    TextComponent,
+    ColorComponent,
+    ChoiceComponent,
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
