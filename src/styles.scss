@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use "../node_modules/@joster-dev/chaos-control/src/lib/styles.scss";
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;

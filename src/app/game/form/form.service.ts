@@ -6,6 +6,4 @@ import { Form } from '../../models';
 })
 export class FormService {
   model = new Form();
-
-  constructor() { }
 }

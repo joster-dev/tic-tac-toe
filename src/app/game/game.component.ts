@@ -1,36 +1,29 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 
 import { Bot, Cell, Game } from '../models';
 import { FormService } from './form/form.service';
 import { LocalStorageService } from './local-storage.service';
 import { FormComponent } from './form/form.component';
 import { CellComponent } from './cell/cell.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ttt-game',
-  standalone: true,
   imports: [
-    CommonModule,
     FormComponent,
     CellComponent,
   ],
   templateUrl: './game.component.html',
-  styleUrls: [
-    '../../../node_modules/@joster-dev/chaos-control/src/lib/atomic.scss',
-    '../../../node_modules/@joster-dev/chaos-control/src/lib/styles.scss',
-    './game.component.scss',
-  ],
+  styleUrl: './game.component.scss',
 })
 export class GameComponent {
+  private readonly formService = inject(FormService);
+  private readonly localStorageService = inject(LocalStorageService);
+
   allowClicks = true;
   game!: Game;
   bot = new Bot();
 
-  constructor(
-    private formService: FormService,
-    private localStorageService: LocalStorageService
-  ) {
+  constructor() {
     if (this.localStorageService.state)
       this.formService.model = this.localStorageService.state.form;
     this.newGame();

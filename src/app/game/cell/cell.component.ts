@@ -1,42 +1,39 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 
 import { FormService } from '../form/form.service';
 import { Cell } from '../../models';
-import { IconModule } from '@joster-dev/icon';
-import { CommonModule } from '@angular/common';
+import { IconComponent } from '@joster-dev/icon';
 
 @Component({
   selector: 'ttt-cell[cell]',
-  standalone: true,
   imports: [
-    CommonModule,
-    IconModule,
+    IconComponent,
   ],
   templateUrl: './cell.component.html',
-  styleUrls: ['./cell.component.scss']
+  styleUrl: './cell.component.scss'
 })
 export class CellComponent {
-  @Input() cell!: Cell;
-  @Input() gameTurn: 'x' | 'o' = 'x';
-  @Input() highlight = false;
-  @Input() disabled = false;
+  protected readonly formService = inject(FormService);
 
-  @Output() claim = new EventEmitter<Cell>();
+  readonly cell = input.required<Cell>();
+  readonly gameTurn = input<'x' | 'o'>('x');
+  readonly highlight = input(false);
+  readonly disabled = input(false);
 
-  constructor(public formService: FormService) { }
+  readonly claim = output<Cell>();
 
   get isBot(): boolean {
     if (!this.formService.model.botPlayer)
       return false;
-    return this.cell.state === this.formService.model.botPlayer;
+    return this.cell().state === this.formService.model.botPlayer;
   }
 
   get label(): string | null {
     if (this.isBot)
       return 'Bot';
-    if (this.cell.state === 'x')
+    if (this.cell().state === 'x')
       return this.formService.model.player1;
-    if (this.cell.state === 'o')
+    if (this.cell().state === 'o')
       return this.formService.model.player2;
     return null;
   }

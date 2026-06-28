@@ -5,7 +5,7 @@
 >
   <div class="d-flex justify-content-center">
     <button
-      [disabled]="disabled"
+      [disabled]="disabled()"
       type="button"
       class="d-flex gap-1 align-items-center"
       (click)="restart.emit()"
@@ -60,7 +60,7 @@
         (ngModelChange)="restart.emit()"
         name="goesFirst"
         required
-        [disabled]="disabled"
+        [disabled]="disabled()"
         [items]="botPlayers"
       >
         Who goes first
@@ -83,7 +83,7 @@
         [(ngModel)]="formService.model.botPlayer"
         (ngModelChange)="restart.emit()"
         name="botPlayer"
-        [disabled]="disabled"
+        [disabled]="disabled()"
         [items]="botPlayers"
       >
         Play
@@ -93,7 +93,7 @@
         (ngModelChange)="restart.emit()"
         name="botFirstMove"
         required
-        [disabled]="!formService.model.botPlayer || formService.model.botPlayer !== formService.model.goesFirst || disabled"
+        [disabled]="!formService.model.botPlayer || formService.model.botPlayer !== formService.model.goesFirst || disabled()"
         [items]="botFirstMoves"
       >
         First move

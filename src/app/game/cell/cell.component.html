@@ -1,29 +1,32 @@
 <button
   type="button"
   class="theme"
-  [class.o]="cell.state === 'o'"
-  [class.x]="cell.state === 'x'"
-  [disabled]="cell.state !== undefined || disabled === true"
-  (click)="claim.emit(cell)"
+  [class.o]="cell().state === 'o'"
+  [class.x]="cell().state === 'x'"
+  [disabled]="cell().state !== undefined || disabled() === true"
+  (click)="claim.emit(cell())"
 >
-  <icon
-    *ngIf="cell.state === 'x'"
-    type="times"
-    [fill]="formService.model.xColor"
-    [spin]="highlight ? 'x' : null"
-  ></icon>
-  <icon
-    *ngIf="cell.state === 'o'"
-    type="ring"
-    [fill]="formService.model.oColor"
-    [spin]="highlight ? 'y' : null"
-  ></icon>
-  <icon
-    *ngIf="cell.state === undefined"
-    [type]="gameTurn === 'x' ? 'times' : 'ring'"
-    class="hover"
-    [fill]="gameTurn === 'x' ? formService.model.xColor : formService.model.oColor"
-  ></icon>
+  @if (cell().state === 'x') {
+    <icon
+      type="times"
+      [fill]="formService.model.xColor"
+      [spin]="highlight() ? 'x' : null"
+    ></icon>
+  }
+  @if (cell().state === 'o') {
+    <icon
+      type="ring"
+      [fill]="formService.model.oColor"
+      [spin]="highlight() ? 'y' : null"
+    ></icon>
+  }
+  @if (cell().state === undefined) {
+    <icon
+      [type]="gameTurn() === 'x' ? 'times' : 'ring'"
+      class="hover"
+      [fill]="gameTurn() === 'x' ? formService.model.xColor : formService.model.oColor"
+    ></icon>
+  }
   <span class="{{isBot ? 'bot-label' : 'label'}}">
     <label>{{label}}</label>
   </span>

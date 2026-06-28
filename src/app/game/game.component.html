@@ -7,16 +7,17 @@
   </a>
 </header>
 <section id="game">
-  <ttt-cell
-    *ngFor="let cell of game.grid"
-    [cell]="cell"
-    [disabled]="allowClicks === false"
-    [gameTurn]="game.turn"
-    [highlight]="game.winPath.includes(cell)"
-    [style.grid-column]="cell.x + 1"
-    [style.grid-row]="cell.y + 1"
-    (claim)="claim(cell)"
-  ></ttt-cell>
+  @for (cell of game.grid; track cell) {
+    <ttt-cell
+      [cell]="cell"
+      [disabled]="allowClicks === false"
+      [gameTurn]="game.turn"
+      [highlight]="game.winPath.includes(cell)"
+      [style.grid-column]="cell.x + 1"
+      [style.grid-row]="cell.y + 1"
+      (claim)="claim(cell)"
+    ></ttt-cell>
+  }
 </section>
 <ttt-form
   [disabled]="!allowClicks"

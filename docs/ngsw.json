@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1728504988512,
-  "index": "https://joster-dev.github.io/tic-tac-toe/index.html",
+  "timestamp": 1782671275226,
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,10 +11,10 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://joster-dev.github.io/tic-tac-toe/index.html",
-        "https://joster-dev.github.io/tic-tac-toe/main-KFERXZFL.js",
-        "https://joster-dev.github.io/tic-tac-toe/polyfills-FFHMD2TL.js",
-        "https://joster-dev.github.io/tic-tac-toe/styles-GEEARLE2.css"
+        "/index.html",
+        "/main-UGTZQRWN.js",
+        "/polyfills-RV3JTMEC.js",
+        "/styles-LHYSV4ZV.css"
       ],
       "patterns": []
     },
@@ -26,20 +26,20 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://joster-dev.github.io/tic-tac-toe/assets/logo.png",
-        "https://joster-dev.github.io/tic-tac-toe/assets/logo.svg"
+        "/assets/logo.png",
+        "/assets/logo.svg"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://joster-dev.github.io/tic-tac-toe/assets/logo.png": "fa39bc9ab551fc494d317ec3df3c9b48845ac9c7",
-    "https://joster-dev.github.io/tic-tac-toe/assets/logo.svg": "2b569bd6aba4b1d0c491bb0f440f2e214f67e255",
-    "https://joster-dev.github.io/tic-tac-toe/index.html": "c12ed9ea594b15d5df90ce89564133255c489899",
-    "https://joster-dev.github.io/tic-tac-toe/main-KFERXZFL.js": "bd2cd46b91ad9f8c4dfb854f6912c009a284a32e",
-    "https://joster-dev.github.io/tic-tac-toe/polyfills-FFHMD2TL.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
-    "https://joster-dev.github.io/tic-tac-toe/styles-GEEARLE2.css": "b7ed73d2d7a4316fb3a3b424b3abdb5f6c222bb1"
+    "/assets/logo.png": "fa39bc9ab551fc494d317ec3df3c9b48845ac9c7",
+    "/assets/logo.svg": "683b64e3cb978d554f39e33eb08b1d6e63831a07",
+    "/index.html": "9e7657d30aefe81f3b8153db3869b5e2ee7b4b54",
+    "/main-UGTZQRWN.js": "3f2ec8239e36a7d86cdf0d31614428d5cc5ca234",
+    "/polyfills-RV3JTMEC.js": "e83dcd401293cfb45ad0988a17d1815b3bb09c33",
+    "/styles-LHYSV4ZV.css": "c0787a02f1006fca56f12ccbcb6068844c3123b6"
   },
   "navigationUrls": [
     {
