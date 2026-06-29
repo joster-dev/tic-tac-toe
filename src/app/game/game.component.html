@@ -7,24 +7,25 @@
   </a>
 </header>
 <section id="game">
-  @for (cell of game().grid; track cell.x + ',' + cell.y + ',' + cell.state) {
-    <ttt-cell
-      [cell]="cell"
-      [disabled]="allowClicks() === false"
-      [gameTurn]="game().turn"
-      [highlight]="game().winPath.includes(cell)"
-      [style.grid-column]="cell.x + 1"
-      [style.grid-row]="cell.y + 1"
-      (claim)="claim(cell)"
-    ></ttt-cell>
+  @for (cell of store.cells(); track cell.index) {
+  <ttt-cell
+    [mark]="cell.mark"
+    [index]="cell.index"
+    [turn]="store.turn()"
+    [highlight]="store.winningLine().includes(cell.index)"
+    [disabled]="store.busy() || store.outcome().kind !== 'playing'"
+    [style.grid-column]="cell.column"
+    [style.grid-row]="cell.row"
+    (claim)="store.play($event)"
+  ></ttt-cell>
   }
 </section>
 <ttt-form
-  [disabled]="!allowClicks()"
-  (restart)="newGame(true)"
+  [disabled]="store.busy()"
+  (restart)="store.newGame()"
 ></ttt-form>
 <footer class="w-lg d-flex justify-content-end">
   <a href="https://joster-dev.github.io/">
-    © Jacob Osterhout 2024
+    © Jacob Osterhout 2026
   </a>
 </footer>

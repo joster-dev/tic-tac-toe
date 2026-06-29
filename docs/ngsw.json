@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1782693652475,
+  "timestamp": 1782695003322,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,8 +12,9 @@
       },
       "urls": [
         "/index.html",
-        "/main-DOWCAIHT.js",
-        "/styles-VQKAITGV.css"
+        "/main-JGVZ3E4E.js",
+        "/styles-VQKAITGV.css",
+        "/worker-B3SKOAEI.js"
       ],
       "patterns": []
     },
@@ -35,9 +36,10 @@
   "hashTable": {
     "/assets/logo.png": "fa39bc9ab551fc494d317ec3df3c9b48845ac9c7",
     "/assets/logo.svg": "683b64e3cb978d554f39e33eb08b1d6e63831a07",
-    "/index.html": "f521e5a4485d2d4a7a447ae594a7c18ca5ad8442",
-    "/main-DOWCAIHT.js": "975a8f620e07b172721f80099252c833eec68911",
-    "/styles-VQKAITGV.css": "d2104caf9eb4314e9ea79f3c7a40e1b61509283e"
+    "/index.html": "2721d98cea79e0cdd4303ebef37e449288a4ec92",
+    "/main-JGVZ3E4E.js": "e1b7c58e973489e2540c3c9bc214bcee9d169ffd",
+    "/styles-VQKAITGV.css": "d2104caf9eb4314e9ea79f3c7a40e1b61509283e",
+    "/worker-B3SKOAEI.js": "2293aedafb173680cd328a93bd96f2cdba8cf6c1"
   },
   "navigationUrls": [
     {

@@ -1,11 +1,11 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 
-import { FormService } from '../form/form.service';
-import { Cell } from '../../models';
+import { Cell, Mark } from '../../models';
+import { SettingsStore } from '../settings.store';
 import { IconComponent } from '@joster-dev/icon';
 
 @Component({
-  selector: 'ttt-cell[cell]',
+  selector: 'ttt-cell',
   imports: [
     IconComponent,
   ],
@@ -13,28 +13,26 @@ import { IconComponent } from '@joster-dev/icon';
   styleUrl: './cell.component.scss'
 })
 export class CellComponent {
-  protected readonly formService = inject(FormService);
+  protected readonly settings = inject(SettingsStore);
 
-  readonly cell = input.required<Cell>();
-  readonly gameTurn = input<'x' | 'o'>('x');
+  readonly mark = input<Cell>(null);
+  readonly index = input.required<number>();
+  readonly turn = input<Mark>('x');
   readonly highlight = input(false);
   readonly disabled = input(false);
 
-  readonly claim = output<Cell>();
+  readonly claim = output<number>();
 
-  get isBot(): boolean {
-    if (!this.formService.model.botPlayer)
-      return false;
-    return this.cell().state === this.formService.model.botPlayer;
-  }
+  protected readonly isBot = computed(() =>
+    this.settings.botPlayer() !== null && this.mark() === this.settings.botPlayer());
 
-  get label(): string | null {
-    if (this.isBot)
+  protected readonly label = computed(() => {
+    if (this.isBot())
       return 'Bot';
-    if (this.cell().state === 'x')
-      return this.formService.model.player1;
-    if (this.cell().state === 'o')
-      return this.formService.model.player2;
+    if (this.mark() === 'x')
+      return this.settings.player1();
+    if (this.mark() === 'o')
+      return this.settings.player2();
     return null;
-  }
+  });
 }

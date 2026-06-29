@@ -28,44 +28,44 @@
     </div>
     <div class="card-body settings">
       <cc-text
-        [ngModel]="formService.player1()"
-        (ngModelChange)="formService.player1.set($event)"
+        [ngModel]="settings.player1()"
+        (ngModelChange)="settings.player1.set($event)"
         name="player1"
-        [disabled]="formService.botPlayer() === 'x'"
+        [disabled]="settings.botPlayer() === 'x'"
         [maxLength]="15"
       >
         X Name
       </cc-text>
       <cc-text
-        [ngModel]="formService.player2()"
-        (ngModelChange)="formService.player2.set($event)"
+        [ngModel]="settings.player2()"
+        (ngModelChange)="settings.player2.set($event)"
         name="player2"
-        [disabled]="formService.botPlayer() === 'o'"
+        [disabled]="settings.botPlayer() === 'o'"
         [maxLength]="15"
       >
         O Name
       </cc-text>
       <cc-color
-        [ngModel]="formService.xColor()"
-        (ngModelChange)="formService.xColor.set($event)"
+        [ngModel]="settings.xColor()"
+        (ngModelChange)="settings.xColor.set($event)"
         name="xColor"
       >
         X Theme
       </cc-color>
       <cc-color
-        [ngModel]="formService.oColor()"
-        (ngModelChange)="formService.oColor.set($event)"
+        [ngModel]="settings.oColor()"
+        (ngModelChange)="settings.oColor.set($event)"
         name="oColor"
       >
         O Theme
       </cc-color>
       <cc-choice
-        [ngModel]="formService.goesFirst()"
-        (ngModelChange)="formService.goesFirst.set($event); restart.emit()"
+        [ngModel]="settings.goesFirst()"
+        (ngModelChange)="settings.goesFirst.set($event); restart.emit()"
         name="goesFirst"
         required
         [disabled]="disabled()"
-        [items]="botPlayers"
+        [items]="players"
       >
         Who goes first
       </cc-choice>
@@ -84,21 +84,21 @@
     </div>
     <div class="card-body bot-settings">
       <cc-choice
-        [ngModel]="formService.botPlayer()"
-        (ngModelChange)="formService.botPlayer.set($event); restart.emit()"
+        [ngModel]="settings.botPlayer()"
+        (ngModelChange)="settings.botPlayer.set($event); restart.emit()"
         name="botPlayer"
         [disabled]="disabled()"
-        [items]="botPlayers"
+        [items]="players"
       >
         Play
       </cc-choice>
       <cc-choice
-        [ngModel]="formService.botFirstMove()"
-        (ngModelChange)="formService.botFirstMove.set($event); restart.emit()"
-        name="botFirstMove"
+        [ngModel]="settings.opening()"
+        (ngModelChange)="settings.opening.set($event); restart.emit()"
+        name="opening"
         required
-        [disabled]="!formService.botPlayer() || formService.botPlayer() !== formService.goesFirst() || disabled()"
-        [items]="botFirstMoves"
+        [disabled]="!settings.botPlayer() || settings.botPlayer() !== settings.goesFirst() || disabled()"
+        [items]="openings"
       >
         First move
       </cc-choice>

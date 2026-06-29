@@ -1,37 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Form, GameState } from '../models';
+import { GameState } from '../models';
+import { Settings } from './settings.store';
 
-@Injectable({
-  providedIn: 'root'
-})
+interface Persisted {
+  version: string;
+  state: GameState;
+  settings: Settings;
+}
+
+/**
+ * Persists the immutable game state + settings snapshot. Both are plain data, so
+ * there is no class-shape to reconstruct — bump `version` if the shape changes.
+ */
+@Injectable({ providedIn: 'root' })
 export class LocalStorageService {
-  readonly version = '002';
-  readonly key = 'JosterDevTicTacToe';
-  state?: {
-    version: string,
-    game: GameState,
-    form: Form
-  };
+  private readonly version = '003';
+  private readonly key = 'JosterDevTicTacToe';
 
-  constructor() {
-    const item = window.localStorage.getItem(this.key);
-    if (item)
-      this.state = JSON.parse(item);
-    if (item && this.state?.version === this.version)
-      return;
-    this.removeGame();
+  load(): { state: GameState; settings: Settings } | null {
+    const raw = window.localStorage.getItem(this.key);
+    if (raw === null)
+      return null;
+    try {
+      const parsed = JSON.parse(raw) as Persisted;
+      if (parsed.version !== this.version) {
+        this.clear();
+        return null;
+      }
+      return { state: parsed.state, settings: parsed.settings };
+    } catch {
+      this.clear();
+      return null;
+    }
   }
 
-  removeGame(): void {
+  save(state: GameState, settings: Settings): void {
+    const data: Persisted = { version: this.version, state, settings };
+    window.localStorage.setItem(this.key, JSON.stringify(data));
+  }
+
+  clear(): void {
     window.localStorage.removeItem(this.key);
-    this.state = undefined;
-  }
-
-  unload(game: GameState, form: Form): void {
-    window.localStorage.setItem(this.key, JSON.stringify({
-      version: this.version,
-      game,
-      form,
-    }))
   }
 }

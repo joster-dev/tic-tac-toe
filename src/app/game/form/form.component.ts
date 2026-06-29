@@ -1,8 +1,8 @@
 import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { botFirstMoves } from '../../models';
+import { openings } from '../../models';
 
-import { FormService } from './form.service';
+import { SettingsStore } from '../settings.store';
 
 import { IconComponent } from '@joster-dev/icon';
 import { ChoiceComponent, ColorComponent, TextComponent } from '@joster-dev/chaos-control';
@@ -20,15 +20,15 @@ import { ChoiceComponent, ColorComponent, TextComponent } from '@joster-dev/chao
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
-  protected readonly formService = inject(FormService);
+  protected readonly settings = inject(SettingsStore);
 
-  readonly botPlayers = [
+  readonly players = [
     { key: 'x', value: 'X' },
     { key: 'o', value: 'O' },
   ];
-  readonly botFirstMoves = botFirstMoves.map(move => ({
-    key: move,
-    value: move.charAt(0).toUpperCase() + move.slice(1)
+  readonly openings = openings.map(opening => ({
+    key: opening,
+    value: opening.charAt(0).toUpperCase() + opening.slice(1)
   }));
 
   readonly disabled = input(false);

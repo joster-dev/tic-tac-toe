@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Cell } from '../../models';
 
 import { CellComponent } from './cell.component';
 
@@ -16,7 +15,7 @@ describe('CellComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CellComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('cell', new Cell(0, 0));
+    fixture.componentRef.setInput('index', 0);
     fixture.detectChanges();
   });
 
