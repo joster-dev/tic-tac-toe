@@ -7,27 +7,25 @@
   (click)="claim.emit(index())"
 >
   @if (mark() === 'x') {
-    <icon
-      type="times"
-      [fill]="settings.xColor()"
-      [spin]="highlight() ? 'x' : null"
-    ></icon>
+  <icon
+    type="times"
+    [fill]="settings.xColor()"
+    [spin]="highlight() ? 'x' : null"
+  ></icon>
   }
   @if (mark() === 'o') {
-    <icon
-      type="ring"
-      [fill]="settings.oColor()"
-      [spin]="highlight() ? 'y' : null"
-    ></icon>
+  <icon
+    type="ring"
+    [fill]="settings.oColor()"
+    [spin]="highlight() ? 'y' : null"
+  ></icon>
   }
   @if (mark() === null) {
-    <icon
-      [type]="turn() === 'x' ? 'times' : 'ring'"
-      class="hover"
-      [fill]="turn() === 'x' ? settings.xColor() : settings.oColor()"
-    ></icon>
+  <icon
+    [type]="turn() === 'x' ? 'times' : 'ring'"
+    class="hover"
+    [fill]="turn() === 'x' ? settings.xColor() : settings.oColor()"
+  ></icon>
   }
-  <span class="{{isBot() ? 'bot-label' : 'label'}}">
-    <label>{{label()}}</label>
-  </span>
 </button>
+<label class="theme {{isBot() ? 'bot-label' : 'label'}}">{{label()}}</label>

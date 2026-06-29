@@ -28,7 +28,7 @@ export class CellComponent {
 
   protected readonly label = computed(() => {
     if (this.isBot())
-      return 'Bot';
+      return '🤖';
     if (this.mark() === 'x')
       return this.settings.player1();
     if (this.mark() === 'o')

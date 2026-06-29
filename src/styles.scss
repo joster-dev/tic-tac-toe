@@ -10,7 +10,7 @@ body {
 }
 
 .theme {
-  background-color: #fff;
+  background-color: #fff !important;
   color: #000;
 }
 
@@ -22,7 +22,7 @@ body {
 
   .theme {
     color: #fff;
-    background-color: #000;
+    background-color: #000 !important;
   }
 }
 
