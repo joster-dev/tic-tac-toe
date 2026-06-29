@@ -26,13 +26,13 @@ A client-only Angular 22 tic-tac-toe PWA. Standalone components (no NgModules), 
 The Angular layer (`src/app/game/`) is a thin shell over these models:
 
 - `GameComponent` owns the live `Game` and `Bot`. `claim()` is the click handler; `allowClicks` gates input while the bot "thinks" (`getClaim` is async) and during the 2.5s end-of-game pause before auto-restart. When a bot player is configured, a human move triggers `botClaim()`.
-- `FormComponent` / `FormService` hold game settings (`Form`: which side the bot plays, who goes first, X/O colors, player names). `FormService.model` is a singleton plain `Form` object two-way bound via `[(ngModel)]` and read across components (e.g. cells render the configured colors/names).
+- `FormComponent` / `FormService` hold game settings (`Form`: which side the bot plays, who goes first, X/O colors, player names). `FormService` exposes each setting as a **signal** (`player1`, `xColor`, `botPlayer`, …) plus a `model` getter/setter that materializes/loads a plain `Form` (used for persistence and imperative reads). The form template uses `[ngModel]="formService.x()"` + `(ngModelChange)="formService.x.set($event)"`, and cells read the signals so colors/names update live.
 - `CellComponent` renders one square.
 - `LocalStorageService` persists `{version, game, form}` under key `JosterDevTicTacToe`. It is saved on the `window:unload` host listener and reloaded in `GameComponent`'s constructor. **Bump `version` when the persisted shape changes** — a mismatch clears the saved game on load.
 
 ### Change detection
 
-This app intentionally stays on **zone.js change detection** (`provideZoneChangeDetection`), not zoneless. The mutation-based game core and `[(ngModel)]`-bound `Form` rely on global CD. See the `zoneless-deferred` memory before attempting a zoneless migration — it's a real refactor, not a config flip.
+This app is **zoneless** (`provideZonelessChangeDetection`); zone.js is removed from `angular.json` polyfills and `package.json`. The mutation-based game core is kept, so reactivity lives at the Angular shell: `FormService` fields are signals, `GameComponent.game` is a signal re-published via `play()` after each in-place `Game.win()`, and the board `@for` tracks by `cell.state` so a moved cell's view recreates. The async bot move yields to a macrotask (`setTimeout`) before committing, because signal writes in the microtask right after a click's `await` don't schedule a tick. See the `zoneless-deferred` memory for the full rationale and gotchas — verify CD changes interactively, not just with `ng build`.
 
 ## Conventions
 

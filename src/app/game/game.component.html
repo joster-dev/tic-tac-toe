@@ -7,12 +7,12 @@
   </a>
 </header>
 <section id="game">
-  @for (cell of game.grid; track cell) {
+  @for (cell of game().grid; track cell.x + ',' + cell.y + ',' + cell.state) {
     <ttt-cell
       [cell]="cell"
-      [disabled]="allowClicks === false"
-      [gameTurn]="game.turn"
-      [highlight]="game.winPath.includes(cell)"
+      [disabled]="allowClicks() === false"
+      [gameTurn]="game().turn"
+      [highlight]="game().winPath.includes(cell)"
       [style.grid-column]="cell.x + 1"
       [style.grid-row]="cell.y + 1"
       (claim)="claim(cell)"
@@ -20,7 +20,7 @@
   }
 </section>
 <ttt-form
-  [disabled]="!allowClicks"
+  [disabled]="!allowClicks()"
   (restart)="newGame(true)"
 ></ttt-form>
 <footer class="w-lg d-flex justify-content-end">

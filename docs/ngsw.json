@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1782672183630,
+  "timestamp": 1782693652475,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,8 +12,7 @@
       },
       "urls": [
         "/index.html",
-        "/main-KHCOJCRW.js",
-        "/polyfills-RV3JTMEC.js",
+        "/main-DOWCAIHT.js",
         "/styles-VQKAITGV.css"
       ],
       "patterns": []
@@ -36,9 +35,8 @@
   "hashTable": {
     "/assets/logo.png": "fa39bc9ab551fc494d317ec3df3c9b48845ac9c7",
     "/assets/logo.svg": "683b64e3cb978d554f39e33eb08b1d6e63831a07",
-    "/index.html": "ad81792bc44ecf3c7449e7e2cc31142971529588",
-    "/main-KHCOJCRW.js": "611ecb90b729086dfcb3803454032f388d042671",
-    "/polyfills-RV3JTMEC.js": "e83dcd401293cfb45ad0988a17d1815b3bb09c33",
+    "/index.html": "f521e5a4485d2d4a7a447ae594a7c18ca5ad8442",
+    "/main-DOWCAIHT.js": "975a8f620e07b172721f80099252c833eec68911",
     "/styles-VQKAITGV.css": "d2104caf9eb4314e9ea79f3c7a40e1b61509283e"
   },
   "navigationUrls": [
