@@ -1,0 +1,1 @@
+visual bug - when the game ends in a draw, the hover effect is persiting when it shouldn't
